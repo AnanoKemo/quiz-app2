@@ -1,0 +1,156 @@
+body {
+  background-color: #F4F6FA;
+  margin: 0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  color: black;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark-mode {
+  background-color: #333;
+  color: white;
+}
+
+.image-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.left-content img {
+  width: 100%;
+  height: auto;
+}
+
+.dark-mode .image-wrapper::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.5;
+  z-index: 2;
+}
+
+.background {
+  display: flex;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.left-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: relative;
+  width: 100%;
+}
+
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 20px;
+  transform: translateY(-50%);
+  color: black;
+  z-index: 1;
+}
+
+.dark-mode .overlay {
+  color: white;
+}
+
+p {
+  font-size: 52px;
+  margin: 0;
+}
+
+.bold {
+  font-weight: bold;
+  font-size: 58px;
+}
+
+.lighter {
+  font-size: 32px;
+  font-weight: lighter;
+}
+
+.container {
+  position: fixed;
+  top: 50%;
+  right: 50px;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  align-items: flex-start;
+  z-index: 5;
+}
+
+.box {
+  width: 600px;
+  height: 80px;
+  border-radius: 15px;
+  background-color: white;
+  border: 3px solid black;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  padding-left: 20px;
+  font-weight: bold;
+  font-size: 24px;
+  color: black;
+  box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .box {
+  background-color: #3B4D66;
+  color: white;
+}
+
+.box-img {
+  width: 40px;
+  height: auto;
+  margin-right: 15px;
+}
+
+.mode-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 60px;
+  height: 30px;
+  background-color: #ddd;
+  border-radius: 50px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+.dark-mode .mode-toggle {
+  background-color: #444;
+}
+
+.circle {
+  width: 22px;
+  height: 22px;
+  background-color: #fff;
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.move {
+  transform: translateX(30px);
+}
+
+.circle2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 500px;
+  height: auto;
+  z-index: 1;
+}
