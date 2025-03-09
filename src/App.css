@@ -87,6 +87,11 @@ p {
   gap: 30px;
   align-items: flex-start;
   z-index: 5;
+  cursor: pointer;
+}
+
+.container .box:hover {
+  border: 5px solid #A729F5;
 }
 
 .box {
@@ -103,6 +108,10 @@ p {
   font-size: 24px;
   color: black;
   box-shadow: 6px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.box :hover {
+  border: none;
 }
 
 .dark-mode .box {
@@ -153,4 +162,81 @@ p {
   width: 500px;
   height: auto;
   z-index: 1;
+}
+
+.quiz-header {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+.quiz-header img {
+  width: 50px;
+  height: auto;
+  margin-right: 20px;
+}
+
+.quiz-header h1 {
+  font-size: 24px;
+  margin: 0;
+}
+
+.letter-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 8px;
+  background-color: #F4F6FA;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  font-weight: bold;
+  color: #626C7F;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.letter-box.selected {
+  background-color: #A729F5;
+  color: white;
+}
+
+.box {
+  cursor: pointer; 
+}
+
+.box.selected {
+  border: 4px solid #A729F5;
+}
+
+.submit-answer {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  clear: both;
+}
+
+.submit-button {
+  width: 600px;
+  height: 56px;
+  background-color: purple;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: darkviolet;
+  border: none;
+}
+
+.submit-button:disabled {
+  background-color: lightgray;
+  cursor: not-allowed;
+  border: none;
 }

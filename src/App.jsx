@@ -11,6 +11,8 @@ import { useState, useEffect } from "react";
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);
+  const [currentPage, setCurrentPage] = useState("home");
+  const [selectedOption, setSelectedOption] = useState(null); 
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);
@@ -24,42 +26,97 @@ function App() {
     }
   }, [darkMode]);
 
-  return (
-    <div className="background">
-      <div className="image-wrapper">
-        <img src={darkMode ? circle4 : circle} alt="Circle" />
+  const pageImages = {
+    home: circle,
+    html: one,
+    css: two,
+    js: three,
+    accessibility: four,
+  };
+
+  const handleBoxClick = (letter) => {
+    setSelectedOption(letter); 
+  };
+
+  const renderQuizPage = (subject) => (
+    <div className="quiz-page">
+      <div className="quiz-header">
+        <img src={pageImages[currentPage]} alt="Page Image" />
+        <h1>{subject} Quiz</h1>
       </div>
-      <div className="overlay">
-        <p>
-          <span className="normal">Welcome to the </span>
-          <span className="bold">frontend quiz!</span>
-          <br />
-          <span className="lighter">Pick a subject to get started</span>
-        </p>
-      </div>
+
       <div className="container">
-        <div className="box">
-          <img src={one} alt="1" className="box-img" />
-          HTML
-        </div>
-        <div className="box">
-          <img src={two} alt="2" className="box-img" />
-          CSS
-        </div>
-        <div className="box">
-          <img src={three} alt="3" className="box-img" />
-          JavaScript
-        </div>
-        <div className="box">
-          <img src={four} alt="4" className="box-img" />
-          Accessibility
+        {['A', 'B', 'C', 'D'].map((letter) => (
+          <div
+            key={letter}
+            className={`box ${selectedOption === letter ? 'selected' : ''}`}
+            onClick={() => handleBoxClick(letter)} 
+          >
+            <div className={`letter-box ${selectedOption === letter ? 'selected' : ''}`}>
+              {letter}
+            </div>
+          </div>
+        ))}
+        <div className="submit-answer">
+          <button
+            className="submit-button"
+            disabled={!selectedOption} 
+          >
+            Submit Answer
+          </button>
         </div>
       </div>
 
       <div className="mode-toggle" onClick={toggleDarkMode}>
         <div className={`circle ${darkMode ? "move" : ""}`}></div>
       </div>
-      <img src={darkMode ? circle3 : circle2} alt="Circle2" className="circle2" />
+    </div>
+  );
+
+  return (
+    <div className="background">
+      {currentPage === "home" && (
+        <>
+          <div className="image-wrapper">
+            <img src={darkMode ? circle4 : circle} alt="Circle" />
+          </div>
+          <div className="overlay">
+            <p>
+              <span className="normal">Welcome to the </span>
+              <span className="bold">frontend quiz!</span>
+              <br />
+              <span className="lighter">Pick a subject to get started</span>
+            </p>
+          </div>
+          <div className="container">
+            <div className="box" onClick={() => setCurrentPage("html")}>
+              <img src={one} alt="1" className="box-img" />
+              HTML
+            </div>
+            <div className="box" onClick={() => setCurrentPage("css")}>
+              <img src={two} alt="2" className="box-img" />
+              CSS
+            </div>
+            <div className="box" onClick={() => setCurrentPage("js")}>
+              <img src={three} alt="3" className="box-img" />
+              JavaScript
+            </div>
+            <div className="box" onClick={() => setCurrentPage("accessibility")}>
+              <img src={four} alt="4" className="box-img" />
+              Accessibility
+            </div>
+          </div>
+          <div className="mode-toggle" onClick={toggleDarkMode}>
+            <div className={`circle ${darkMode ? "move" : ""}`}></div>
+          </div>
+          <img src={darkMode ? circle3 : circle2} alt="Circle2" className="circle2" />
+        </>
+      )}
+
+      {currentPage === "html" && renderQuizPage("HTML")}
+      {currentPage === "css" && renderQuizPage("CSS")}
+      {currentPage === "js" && renderQuizPage("JavaScript")}
+      {currentPage === "accessibility" && renderQuizPage("Accessibility")}
     </div>
   );
 }
